@@ -19,17 +19,29 @@ jobs:
           name: "Front-End Install"
           command: npm run frontend:install
       - run:
+          name: "Front-End Format"
+          command: npm run frontend:format
+      - run:
+          name: "Front-End Test"
+          command: npm run frontend:test        
+      - run:
+          name: "Front-End Build"
+          command: npm run frontend:build    
+      - run:
           name: "Back-End Install"
           command: npm run backend:install
       - run:
-          name: "Front-End Build"
-          command: npm run frontend:build
+          name: "Back-End Format"
+          command: npm run backend:format
+      - run:
+          name: "Back-End Test"
+          command: npm run backend:test        
       - run:
           name: "Back-End Build"
           command: npm run backend:build            
 
 # Invoke jobs via workflows
 workflows:
-  build-workflow:
+  deploy-workflow:
     jobs:
       - build
