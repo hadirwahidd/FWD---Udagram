@@ -4,12 +4,13 @@
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
-    "prettier": "prettier --config .prettierrc \"src/**/**/*.{js,ts}\" --write",
     "ng": "ng",
+    "prettier": "prettier --config .prettierrc \"src/**/**/*.{js,ts}\" --write",
+    "lint": "ng lint",
+    "format": "npm run prettier && npm run lint",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "aws s3 cp --recursive --acl public-read ./www s3://fwd-udagram/"
   },
