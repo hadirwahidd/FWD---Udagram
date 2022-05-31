@@ -4,22 +4,32 @@ version: 2.1
 # Orbs
 orbs: 
   node: circleci/node@5.0.2
+  aws-cli: circleci/aws-cli@3.1.1
 # Define jobs to be invoked in a workflow.
 jobs:
-  say-hello:
+  build:
     # Specify the execution environment(You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub).
     docker:
-      - image: cimg/base:stable
+      - image: "cimg/base:stable"
     # Add steps to the job
     steps:
       - node/install
       - checkout
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: "Front-End Install"
+          command: npm run frontend:install
+      - run:
+          name: "Back-End Install"
+          command: npm run backend:install
+      - run:
+          name: "Front-End Build"
+          command: npm run frontend:build
+      - run:
+          name: "Back-End Build"
+          command: npm run backend:build            
 
 # Invoke jobs via workflows
 workflows:
-  say-hello-workflow:
+  build-workflow:
     jobs:
-      - say-hello
+      - build
