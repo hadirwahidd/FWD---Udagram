@@ -6,7 +6,6 @@ orbs:
   node: circleci/node@5.0.2
   aws-cli: circleci/aws-cli@3.1.1
   aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1
-  aws-eb-cli: speakable-org/aws-eb-cli@1.0.1
 # Define jobs to be invoked in a workflow.
 jobs:
   build:
@@ -43,6 +42,12 @@ jobs:
           name: "Back-End Build"
           command: npm run backend:build
       - run:
+          name: "Installing awsebcli"
+          command: |
+            sudo apt-get update
+            sudo apt-get install python3-pip python3-dev build essential
+            sudo pip3 install awsebcli  
+      - run:
           name: "Back-End Deploy"
           command: npm run backend:deploy                    
 
@@ -50,4 +55,8 @@ jobs:
 workflows:
   build-workflow:
     jobs:
-      - build
+      - build:
+        filters:
+          branches:
+            only:
+              - master
