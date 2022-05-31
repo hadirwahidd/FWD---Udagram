@@ -13,7 +13,11 @@
     "prod": "tsc && node ./www/server.js",
     "clean": "rimraf www/ || true",
     "build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
-    "test": "echo \"Error: no test specified\""
+    "test": "echo \"Error: no test specified\"",
+    "use": "eb use udagram-api-dev",
+    "setenv1": "eb setenv PORT=$PORT",
+    "setenv2": "eb setenv AWS_RDS=$AWS_RDS",
+    "deploy": "eb deploy udagram-api-dev"
   },
   "keywords": [],
   "author": "Gabriel Ruttner",
