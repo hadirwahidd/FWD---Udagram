@@ -20,10 +20,7 @@ jobs:
           command: npm run frontend:install
       - run:
           name: "Front-End Format"
-          command: npm run frontend:format
-      - run:
-          name: "Front-End Test"
-          command: npm run frontend:test        
+          command: npm run frontend:format        
       - run:
           name: "Front-End Build"
           command: npm run frontend:build    
@@ -38,10 +35,23 @@ jobs:
           command: npm run backend:test        
       - run:
           name: "Back-End Build"
-          command: npm run backend:build            
+          command: npm run backend:build
+  frontend-deploy:
+    # Specify the execution environment(You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub).
+    docker:
+      - image: "cimg/base:stable"
+    # Add steps to the job
+    steps:
+      - node/install
+      - aws-cli/setup
+      - checkout
+      - run:
+          name: "Front-End Deploy"
+          command: npm run frontend:deploy                  
 
 # Invoke jobs via workflows
 workflows:
   deploy-workflow:
     jobs:
       - build
+      - frontend-deploy
