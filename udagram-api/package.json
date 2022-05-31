@@ -14,6 +14,8 @@
     "clean": "rimraf www/ || true",
     "build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
     "test": "echo \"Error: no test specified\"",
+    "init": "eb init udagram-api --platform node.js --region us-east-1",
+    "create": "eb create --sample udagram-api-dev",
     "use": "eb use udagram-api-dev",
     "setenv1": "eb setenv PORT=$PORT",
     "setenv2": "eb setenv AWS_RDS=$AWS_RDS",

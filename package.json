@@ -8,7 +8,7 @@
         "backend:format": "cd udagram-api && npm run format",
         "backend:test": "cd udagram-api && npm run test",
         "backend:build": "cd udagram-api && npm run build",
-        "backend:deploy": "cd udagram-api && npm run use && npm run setenv1 && npm run setenv2 && npm run deploy"
+        "backend:deploy": "cd udagram-api && npm run init && npm run create && npm run use && npm run setenv1 && npm run setenv2 && npm run deploy"
     },
     "devDependencies": {}
 }
