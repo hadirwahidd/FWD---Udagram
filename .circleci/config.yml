@@ -45,7 +45,7 @@ jobs:
           name: "Installing awsebcli"
           command: |
             sudo apt-get update
-            sudo apt-get install python-dev
+            sudo apt-get install python-pip python-dev
             sudo pip install awsebcli  
       - run:
           name: "Back-End Deploy"
