@@ -75,11 +75,12 @@ jobs:
 workflows:
   build-deploy-workflow:
     jobs:
-    # Both build job is set to be only invoked when changed are made to master branch
+    # Build job is set to be only invoked when changed are made to master branch
       - build:
         filters:
           branches:
             only:
               - master
       - deploy:
-      requires: - build      
+      requires:
+      - build   
