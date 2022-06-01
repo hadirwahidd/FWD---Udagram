@@ -12,7 +12,7 @@
     "build": "ng build",
     "test": "ng test",
     "e2e": "ng e2e",
-    "deploy": "aws s3 cp --recursive --acl public-read ./www s3://fwd-udagram/"
+    "deploy": "aws s3 cp --recursive --acl public-read ./www s3://$AWS_BUCKET/"
   },
   "private": true,
   "dependencies": {

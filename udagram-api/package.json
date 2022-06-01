@@ -14,12 +14,11 @@
     "clean": "rimraf www/ || true",
     "build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
     "test": "echo \"Error: no test specified\"",
-    "init": "eb init udagram-api --platform node.js --region us-east-1",
-    "create": "eb create --sample udagram-api-dev",
-    "use": "eb use udagram-api-dev",
-    "setenv1": "eb setenv PORT=$PORT",
-    "setenv2": "eb setenv AWS_RDS=$AWS_RDS",
-    "deploy": "eb deploy udagram-api-dev"
+    "init": "eb init $AWS_EB_APP --platform node.js --region us-east-1",
+    "create": "eb create --sample $AWS_EB_ENV",
+    "use": "eb use $AWS_EB_ENV",
+    "setenv": "eb setenv AWS_RDS=$AWS_RDS",
+    "deploy": "eb deploy $AWS_EB_ENV"
   },
   "keywords": [],
   "author": "Gabriel Ruttner",
