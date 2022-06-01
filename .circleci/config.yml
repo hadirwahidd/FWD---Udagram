@@ -7,46 +7,7 @@ orbs:
   aws-cli: circleci/aws-cli@3.1.1
 # Jobs to be invoked in the workflow
 jobs:
-  build:
-    # Execution Environment(An image from Dockerhub)
-    docker:
-      - image: "cimg/base:stable"
-    # Steps to the job
-    steps:
-      - node/install
-      - checkout
-      - run:
-          name: "Installing awsebcli"
-          command: |
-            sudo apt-get update
-            sudo apt-get install python3-pip python-dev
-            sudo pip install awsebcli
-      - run:
-        # Installing Node Packages for the FrontEnd
-          name: "Front-End Install"
-          command: npm run frontend:install
-      - run:
-        # Running Prettier and ESLint
-          name: "Front-End Format"
-          command: npm run frontend:format        
-      - run:
-          name: "Front-End Build"
-          command: npm run frontend:build    
-      - run:
-        # Installing Node Packages for the API
-          name: "Back-End Install"
-          command: npm run backend:install
-      - run:
-        # Running Prettier and ESLint
-          name: "Back-End Format"
-          command: npm run backend:format
-      - run:
-          name: "Back-End Test"
-          command: npm run backend:test        
-      - run:
-          name: "Back-End Build"
-          command: npm run backend:build  
-  deploy:
+  build-deploy:
     # Execution Environment(An image from Dockerhub)
     docker:
       - image: "cimg/base:stable"
@@ -61,28 +22,51 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install python3-pip python-dev
-            sudo pip install awsebcli    
+            sudo pip install awsebcli
+      - run:
+        # Installing Node Packages for the FrontEnd
+          name: "Front-End Install"
+          command: npm run frontend:install
+      - run:
+        # Installing Node Packages for the API
+          name: "Back-End Install"
+          command: npm run backend:install
+      - run:
+        # Running Prettier and ESLint for FrontEnd
+          name: "Front-End Format"
+          command: npm run frontend:format
+      - run:
+        # Running Prettier and ESLint for the API
+          name: "Back-End Format"
+          command: npm run backend:format
+      - run:
+        # Running tests on the API
+          name: "Back-End Test"
+          command: npm run backend:test
+      - run:
+        # Building FrontEnd Application to be deployed
+          name: "Front-End Build"
+          command: npm run frontend:build
+      - run:
+        # Building API and adding it to Archive to be deployed
+          name: "Back-End Build"
+          command: npm run backend:build
       - run:
           # Deploy Angular FrontEnd to S3 Bucket
           name: "Front-End Deploy"
           command: npm run frontend:deploy
       - run:
-          # Deploy API (BackEnd) to Elastic Beanstalk
+          # Deploy API (BackEnd) to Elastic Beanstalk: initiating app - creating env - setting env variables - deploying
           name: "Back-End Deploy"
-          command: npm run backend:deploy                          
+          command: npm run backend:deploy
 
-# Invoke build and deploy jobs via the workflow
+# Invoke build job via the workflow
 workflows:
   build-deploy-workflow:
     jobs:
-    # Build job is set to be only invoked when changed are made to master branch
-      - build:
+    # build-deploy job is set to be only invoked when changed are made to master branch
+      - build-deploy:
         filters:
           branches:
             only:
-              - master
-      - deploy:
-        filters:
-          branches:
-            only:
-              - master   
+              - master 
