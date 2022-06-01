@@ -52,6 +52,7 @@ jobs:
       - image: "cimg/base:stable"
     # Steps to the job
     steps:
+      - node/install
       - checkout
       - aws-cli/setup
       - run:
