@@ -5,7 +5,6 @@ version: 2.1
 orbs: 
   node: circleci/node@5.0.2
   aws-cli: circleci/aws-cli@3.1.1
-  yarn: artsy/yarn@6.2.0
 # Jobs to be invoked in the workflow
 jobs:
   build-deploy:
