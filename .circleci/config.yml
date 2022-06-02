@@ -56,7 +56,7 @@ jobs:
           name: "Front-End Deploy"
           command: npm run frontend:deploy
       - run:
-          # Deploy API (BackEnd) to Elastic Beanstalk: initiating app - creating env - setting env variables - deploying
+          # Deploy API (BackEnd) to Elastic Beanstalk
           name: "Back-End Deploy"
           command: npm run backend:deploy
 
