@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - node/install:
-        install-yarn: true
+         install-yarn: - true
       - aws-cli/setup
       - run:
           # Installing awsebcli to be able to deploy using eb command
