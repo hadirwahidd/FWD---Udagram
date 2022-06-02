@@ -1,0 +1,9 @@
+AWS-EB
+AWS-EB-ENV
+AWS-RDS
+AWS-S3-Bucket
+Working backend on EB with DB connected
+Working frontend with no errors with backend & DB connected
+Environment variables of CircleCI
+CircleCI connected to github and tracks master branch
+Last successful build on CircleCI
