@@ -13,9 +13,9 @@ jobs:
       - image: "cimg/base:stable"
     # Steps to the job
     steps:
+      - checkout
       - node/install:
         install-yarn: true
-      - checkout
       - aws-cli/setup
       - run:
           # Installing awsebcli to be able to deploy using eb command
