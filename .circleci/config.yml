@@ -13,8 +13,8 @@ jobs:
       - image: "cimg/base:stable"
     # Steps to the job
     steps:
-      - node/install
-      - yarn/install
+      - node/install:
+        install-yarn: true
       - checkout
       - aws-cli/setup
       - run:
